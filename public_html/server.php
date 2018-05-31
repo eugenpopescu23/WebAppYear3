@@ -16,7 +16,7 @@
 	$_SESSION['success'] = "";
 
 	// connect to database
-	$db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
+	$db = mysqli_connect('mysql.cms.gre.ac.uk', 'er42fv', '!sdf34', 'mdb_er42fv');
 
 /*HTTPS Integration*/
 if(empty($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] !== "on")
@@ -85,7 +85,7 @@ Please activate your account with the code provided in this email!
 Heres your code : ".$code." 
 ";
             
-            $header = "From: ep6562v@gre.ac.uk" . "\r\n";
+            $header = "From: er42fv@gre.ac.uk" . "\r\n";
             
             mail($to, $subject, $message, $header);
             header('location:validation.php');
