@@ -16,7 +16,7 @@
 	$_SESSION['success'] = "";
 
 	// connect to database
-	$db = mysqli_connect('mysql.cms.gre.ac.uk', 'er42fv', '!sdf34', 'mdb_er42fv');
+	$db = mysqli_connect('mysql.cms...', 'er42fv', '!sdf34', 'mdb_er42fv');
 
 /*HTTPS Integration*/
 if(empty($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] !== "on")
