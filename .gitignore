@@ -1,3 +1,5 @@
+.env
+
 # General from github.com/github/gitignore
 .DS_Store
 
