@@ -1,9 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../vendor/autoload.php";
-
-$dotenv = \Dotenv\Dotenv::create(__DIR__ . "/../");
-$dotenv->load();
+require_once __DIR__ . "/database.php";
 
 session_start();
 ob_start();
@@ -19,9 +16,6 @@ $errors = array();
 
 // $codeEnter = "";
 $_SESSION['success'] = "";
-
-// connect to database
-$db = mysqli_connect('mysql.cms...', 'er42fv', '!sdf34', 'mdb_er42fv');
 
 /*HTTPS Integration*/
 if (empty($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] !== "on") {
