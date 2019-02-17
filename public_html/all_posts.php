@@ -1,12 +1,12 @@
-<?php include('server.php') ?> 
+<?php require 'server.php' ?> 
 
-	      <?php  
-    $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-    $username = $_SESSION['username'];
-    $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
-    $result = mysqli_query($db, $query);    
+        <?php  
+        $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
+        $username = $_SESSION['username'];
+        $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
+        $result = mysqli_query($db, $query);    
     
-    if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)): ?>
+        if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)) : ?>
         
 <!DOCTYPE html>
 
@@ -81,14 +81,14 @@
             <h1>All Posts</h1>
         </div>
     <br>
-<?php
-    $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-    $query = "SELECT * FROM routes";
-    $result = mysqli_query($db, $query);
+            <?php
+            $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
+            $query = "SELECT * FROM routes";
+            $result = mysqli_query($db, $query);
 
             
-    while ($row = mysqli_fetch_array($result)) {
-    ?>
+            while ($row = mysqli_fetch_array($result)) {
+                ?>
         <table class="table table-responsive">
            <thead>
       <tr>
@@ -123,12 +123,12 @@
 
   
          </table>
-<?php
-    } 
-     ?>
+                <?php
+            } 
+            ?>
     </div>
     </body>
 </html>
-<?php else : ?>
-<?php header ("location: login.php"); ?>
-<?php endif?>
+    <?php else : ?>
+        <?php header("location: login.php"); ?>
+    <?php endif?>

@@ -1,4 +1,4 @@
-<?php include('server.php') ?>
+<?php require 'server.php' ?>
 <!DOCTYPE html>
 <html>
 
@@ -65,7 +65,7 @@
      <div class="col-sm-4">
     <form method="post" action="register.php">
 
-        <?php include('errors.php'); ?>
+        <?php require 'errors.php'; ?>
         <div>
             <label>First Name</label>
             <input type="text" class="form-control" name="firstname" value="<?php echo $firstname; ?>">

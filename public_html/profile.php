@@ -1,17 +1,17 @@
 <?php 
-	session_start(); 
+    session_start(); 
     ob_start();
 
-	if (!isset($_SESSION['username'])) {
-		$_SESSION['msg'] = "You must log in first";
-		header('location: login.php');
-	}
+if (!isset($_SESSION['username'])) {
+    $_SESSION['msg'] = "You must log in first";
+    header('location: login.php');
+}
 
-	if (isset($_GET['logout'])) {
-		session_destroy();
-		header("location: index.php");
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("location: index.php");
         
-	}
+}
 
 ?>
 <!DOCTYPE html>
@@ -87,12 +87,12 @@
 
         <!-- logged in user information -->
         <?php  
-    $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-    $username = $_SESSION['username'];
-    $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
-    $result = mysqli_query($db, $query);    
+        $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
+        $username = $_SESSION['username'];
+        $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
+        $result = mysqli_query($db, $query);    
     
-    if (isset($_SESSION['username']) && $row = mysqli_fetch_assoc($result)): ?>
+        if (isset($_SESSION['username']) && $row = mysqli_fetch_assoc($result)) : ?>
         <p>Welcome <strong><?php echo $_SESSION['username']; ?></strong></p><br>
         <p>If you would like to add your commute journey, press the button bellow</p>
         <div>
@@ -102,9 +102,9 @@
         <div>
             <button onclick="window.location.href='/~ep6562v/display_post.php'" class="btn" name="display_post" href="display_post.php">Display Post</button>
         </div>
-        <?php else : ?>
-           <?php  header ("location: login.php"); ?>
-        <?php endif ?>
+            <?php else : ?>
+                <?php  header("location: login.php"); ?>
+            <?php endif ?>
     </div>
             <div class="col-sm-4"></div>
          </div>

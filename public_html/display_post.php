@@ -1,12 +1,12 @@
-<?php include('server.php') ?> 
+<?php require 'server.php' ?> 
 
-	      <?php  
-    $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-    $username = $_SESSION['username'];
-    $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
-    $result = mysqli_query($db, $query);    
+        <?php  
+        $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
+        $username = $_SESSION['username'];
+        $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
+        $result = mysqli_query($db, $query);    
     
-    if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)): ?>
+        if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)) : ?>
         
 <!DOCTYPE html>
 
@@ -76,28 +76,28 @@
         <div class="starter-template">
             <h1>Your Posts</h1>
          </div>
-<?php
-    $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-    $query = "SELECT * FROM routes WHERE username='" . $_SESSION['username'] . "'";
-    $result = mysqli_query($db, $query);
-        if (isset ($_POST['ID'])) {
-            $_SESSION['PostID']=$_POST['ID'];
-        }
+            <?php
+            $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
+            $query = "SELECT * FROM routes WHERE username='" . $_SESSION['username'] . "'";
+            $result = mysqli_query($db, $query);
+            if (isset($_POST['ID'])) {
+                $_SESSION['PostID']=$_POST['ID'];
+            }
        
-         if (isset($_POST['delete_post'])) {
+            if (isset($_POST['delete_post'])) {
                                        
-        //if no erros then do this                  
-             $query= "DELETE FROM routes WHERE ID=' ".$_SESSION['PostID']. "'"; 
-          if(  mysqli_query($db, $query)) {
-              header('location: display_post.php');
-          }
+                //if no erros then do this                  
+                $query= "DELETE FROM routes WHERE ID=' ".$_SESSION['PostID']. "'"; 
+                if(mysqli_query($db, $query)) {
+                    header('location: display_post.php');
+                }
                 
        
-                                      }
+            }
     
             
-    while ($row = mysqli_fetch_array($result)) {
-?>
+            while ($row = mysqli_fetch_array($result)) {
+                ?>
           <table class="table table-responsive">
            <thead>
       <tr>
@@ -140,14 +140,14 @@
           <button type="submit" class="btn" name="delete_post">Delete Post</button>
         </div>
          </form>  
-        <?php
-    } 
-     ?>
+                <?php
+            } 
+            ?>
   
          </div>
          
     </body>
 </html>
-<?php else : ?>
-<?php header ("location: login.php"); ?>
-<?php endif?>
+    <?php else : ?>
+        <?php header("location: login.php"); ?>
+    <?php endif?>

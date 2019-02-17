@@ -1,11 +1,11 @@
-<?php include('server.php') ?>
- <?php  
+<?php require 'server.php' ?>
+    <?php  
     $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
     $username = $_SESSION['username'];
     $query = "SELECT * FROM users WHERE username='$username' AND valid='0'";
     $result = mysqli_query($db, $query);    
     
-    if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)): ?>
+    if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)) : ?>
     
 <!DOCTYPE html>
 <html>
@@ -71,7 +71,7 @@
          <div class="col-sm-4"></div>
 <div class="col-sm-4">
         <form action="validation.php" method="POST">
-        <?php include('errors.php'); ?>
+        <?php include 'errors.php'; ?>
             <div>
         <input type="text" class="form-control" name="code" placeholder="Code from email"><br>
             </div>
@@ -86,5 +86,5 @@
     </body>
 </html>
 <?php else : ?>
-<?php header ("location: profile.php"); ?>
+    <?php header("location: profile.php"); ?>
 <?php endif?>

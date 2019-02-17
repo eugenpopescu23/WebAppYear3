@@ -1,4 +1,4 @@
-<?php include('server.php') ?>
+<?php require 'server.php' ?>
 <!DOCTYPE html>
 <html>
 
@@ -66,7 +66,7 @@
 <div class="col-sm-4">
     <form method="post" action="login.php">
 
-        <?php include('errors.php'); ?>
+        <?php require 'errors.php'; ?>
 
         <div>
             <label>Username</label>
