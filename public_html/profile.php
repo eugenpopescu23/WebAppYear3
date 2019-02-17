@@ -1,16 +1,16 @@
-<?php 
-    session_start(); 
-    ob_start();
+<?php
+session_start();
+ob_start();
 
 if (!isset($_SESSION['username'])) {
-    $_SESSION['msg'] = "You must log in first";
-    header('location: login.php');
+  $_SESSION['msg'] = "You must log in first";
+  header('location: login.php');
 }
 
 if (isset($_GET['logout'])) {
-    session_destroy();
-    header("location: index.php");
-        
+  session_destroy();
+  header("location: index.php");
+
 }
 
 ?>
@@ -33,7 +33,7 @@ if (isset($_GET['logout'])) {
         }
         .img-fluid2{
               max-width: 300px;
-  height: auto; 
+  height: auto;
         }
              .img-nav{
             margin-right: 10px;
@@ -50,7 +50,7 @@ if (isset($_GET['logout'])) {
     </style>
 </head>
 
-<body  > 
+<body  >
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <img src="css/images/logo.png" class="img-nav" alt="logo"  width="40" height="50">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,16 +83,16 @@ if (isset($_GET['logout'])) {
     </div>
         <div class="row">
          <div class="col-sm-4"></div>
-         <div class="col-sm-4">   
+         <div class="col-sm-4">
 
         <!-- logged in user information -->
-        <?php  
-        $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-        $username = $_SESSION['username'];
-        $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
-        $result = mysqli_query($db, $query);    
-    
-        if (isset($_SESSION['username']) && $row = mysqli_fetch_assoc($result)) : ?>
+        <?php
+require_once __DIR__ . "/database.php";
+$username = $_SESSION['username'];
+$query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
+$result = mysqli_query($db, $query);
+
+if (isset($_SESSION['username']) && $row = mysqli_fetch_assoc($result)): ?>
         <p>Welcome <strong><?php echo $_SESSION['username']; ?></strong></p><br>
         <p>If you would like to add your commute journey, press the button bellow</p>
         <div>
@@ -102,9 +102,9 @@ if (isset($_GET['logout'])) {
         <div>
             <button onclick="window.location.href='/~ep6562v/display_post.php'" class="btn" name="display_post" href="display_post.php">Display Post</button>
         </div>
-            <?php else : ?>
-                <?php  header("location: login.php"); ?>
-            <?php endif ?>
+            <?php else: ?>
+                <?php header("location: login.php");?>
+            <?php endif?>
     </div>
             <div class="col-sm-4"></div>
          </div>

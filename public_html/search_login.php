@@ -1,11 +1,11 @@
-<?php require 'server.php' ?>
-        <?php  
-        $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-        $username = $_SESSION['username'];
-        $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
-        $result = mysqli_query($db, $query);    
-    
-        if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)) : ?>
+<?php require 'server.php'?>
+        <?php
+require_once __DIR__ . "/database.php";
+$username = $_SESSION['username'];
+$query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
+$result = mysqli_query($db, $query);
+
+if (isset($_SESSION['username']) && $row = mysqli_fetch_assoc($result)): ?>
 <html>
     <head>
     <title>Search Results</title>
@@ -23,7 +23,7 @@
         }
         .img-fluid2{
               max-width: 300px;
-  height: auto; 
+  height: auto;
         }
             .img-nav{
             margin-right: 10px;
@@ -64,18 +64,17 @@
 <form>
             <?php
 
-            if(isset($_POST['submit_search'])) {
-    
-                $search = mysqli_real_escape_string($db, $_POST['search']);
-     
+if (isset($_POST['submit_search'])) {
 
-                $query = "SELECT * FROM routes WHERE destination LIKE '%$search%' OR startingpoint LIKE '%$search%' OR days LIKE '%$search%' OR time LIKE '%$search%'";
-                $result = mysqli_query($db, $query);
-                $queryResult = mysqli_num_rows($result);
-        
-                if($queryResult > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        ?> 
+  $search = mysqli_real_escape_string($db, $_POST['search']);
+
+  $query = "SELECT * FROM routes WHERE destination LIKE '%$search%' OR startingpoint LIKE '%$search%' OR days LIKE '%$search%' OR time LIKE '%$search%'";
+  $result = mysqli_query($db, $query);
+  $queryResult = mysqli_num_rows($result);
+
+  if ($queryResult > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      ?>
              <table class="table table-responsive">
            <thead>
       <tr>
@@ -94,35 +93,35 @@
     </thead>
     <tbody>
       <tr>
-           <td><?php echo "<p>".$row['username']."</p>"; ?></td>
-        <td><?php echo "<p>".$row['startingpoint']."</p>"; ?></td>
-        <td><?php echo "<p>".$row['destination']."</p>"; ?></td>
-        <td><?php echo "<p>".$row['days']."</p>"; ?></td>
-          <td><?php echo "<p>".$row['time']."</p>"; ?></td>
-            <td><?php echo "<p>".$row['cost']."</p>"; ?></td>
-           <td><?php echo "<p>".$row['provide']."</p>"; ?></td>
-          <td><?php echo "<p>".$row['car']."</p>"; ?></td>
-        
-          <td><?php echo "<img class='img-fluid2'  src='css/images/".$row['image']."' >"; ?></td>
-          <td><?php echo "<img class='img-fluid2'  src='css/images/".$row['image_other']."' >"; ?></td>
-          <td><?php echo "<img class='img-fluid2'  src='css/images/".$row['image_other2']."' >"; ?></td>
+           <td><?php echo "<p>" . $row['username'] . "</p>"; ?></td>
+        <td><?php echo "<p>" . $row['startingpoint'] . "</p>"; ?></td>
+        <td><?php echo "<p>" . $row['destination'] . "</p>"; ?></td>
+        <td><?php echo "<p>" . $row['days'] . "</p>"; ?></td>
+          <td><?php echo "<p>" . $row['time'] . "</p>"; ?></td>
+            <td><?php echo "<p>" . $row['cost'] . "</p>"; ?></td>
+           <td><?php echo "<p>" . $row['provide'] . "</p>"; ?></td>
+          <td><?php echo "<p>" . $row['car'] . "</p>"; ?></td>
+
+          <td><?php echo "<img class='img-fluid2'  src='css/images/" . $row['image'] . "' >"; ?></td>
+          <td><?php echo "<img class='img-fluid2'  src='css/images/" . $row['image_other'] . "' >"; ?></td>
+          <td><?php echo "<img class='img-fluid2'  src='css/images/" . $row['image_other2'] . "' >"; ?></td>
       </tr>
     </tbody>
 
-  
+
          </table>
                         <?php
-                    } 
-                }else {
-                    echo "<h2>There are no results matching your search!</h2>";
-                }
-            }
-            ?>
-        
+}
+  } else {
+    echo "<h2>There are no results matching your search!</h2>";
+  }
+}
+?>
+
 </form>
         </div>
     </body>
 </html>
-    <?php else : ?>
-        <?php header("location: login.php"); ?>
+    <?php else: ?>
+        <?php header("location: login.php");?>
     <?php endif?>

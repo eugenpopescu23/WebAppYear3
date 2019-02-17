@@ -1,13 +1,13 @@
-<?php require 'server.php' ?> 
+<?php require 'server.php'?>
 
-        <?php  
-        $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-        $username = $_SESSION['username'];
-        $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
-        $result = mysqli_query($db, $query);    
-    
-        if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)) : ?>
-        
+        <?php
+require_once __DIR__ . "/database.php";
+$username = $_SESSION['username'];
+$query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
+$result = mysqli_query($db, $query);
+
+if (isset($_SESSION['username']) && $row = mysqli_fetch_assoc($result)): ?>
+
 <!DOCTYPE html>
 
 
@@ -28,7 +28,7 @@
         }
         .img-fluid2{
               max-width: 300px;
-  height: auto; 
+  height: auto;
         }
           .img-nav{
             margin-right: 10px;
@@ -82,13 +82,12 @@
         </div>
     <br>
             <?php
-            $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-            $query = "SELECT * FROM routes";
-            $result = mysqli_query($db, $query);
+require_once __DIR__ . "/database.php";
+$query = "SELECT * FROM routes";
+$result = mysqli_query($db, $query);
 
-            
-            while ($row = mysqli_fetch_array($result)) {
-                ?>
+while ($row = mysqli_fetch_array($result)) {
+  ?>
         <table class="table table-responsive">
            <thead>
       <tr>
@@ -107,28 +106,28 @@
     </thead>
     <tbody>
       <tr>
-          <td><?php echo "<p>".$row['username']."</p>"; ?></td>
-        <td><?php echo "<p>".$row['startingpoint']."</p>"; ?></td>
-        <td><?php echo "<p>".$row['destination']."</p>"; ?></td>
-        <td><?php echo "<p>".$row['days']."</p>"; ?></td>
-          <td><?php echo "<p>".$row['time']."</p>"; ?></td>
-          <td><?php echo "<p>".$row['cost']."</p>"; ?></td>
-          <td><?php echo "<p>".$row['provide']."</p>"; ?></td>
-          <td><?php echo "<p>".$row['car']."</p>"; ?></td>
-          <td><?php echo "<img class='img-fluid2'  src='css/images/".$row['image']."' >"; ?></td>
-          <td><?php echo "<img class='img-fluid2'  src='css/images/".$row['image_other']."' >"; ?></td>
-          <td><?php echo "<img class='img-fluid2'  src='css/images/".$row['image_other2']."' >"; ?></td>
+          <td><?php echo "<p>" . $row['username'] . "</p>"; ?></td>
+        <td><?php echo "<p>" . $row['startingpoint'] . "</p>"; ?></td>
+        <td><?php echo "<p>" . $row['destination'] . "</p>"; ?></td>
+        <td><?php echo "<p>" . $row['days'] . "</p>"; ?></td>
+          <td><?php echo "<p>" . $row['time'] . "</p>"; ?></td>
+          <td><?php echo "<p>" . $row['cost'] . "</p>"; ?></td>
+          <td><?php echo "<p>" . $row['provide'] . "</p>"; ?></td>
+          <td><?php echo "<p>" . $row['car'] . "</p>"; ?></td>
+          <td><?php echo "<img class='img-fluid2'  src='css/images/" . $row['image'] . "' >"; ?></td>
+          <td><?php echo "<img class='img-fluid2'  src='css/images/" . $row['image_other'] . "' >"; ?></td>
+          <td><?php echo "<img class='img-fluid2'  src='css/images/" . $row['image_other2'] . "' >"; ?></td>
       </tr>
     </tbody>
 
-  
+
          </table>
                 <?php
-            } 
-            ?>
+}
+?>
     </div>
     </body>
 </html>
-    <?php else : ?>
-        <?php header("location: login.php"); ?>
+    <?php else: ?>
+        <?php header("location: login.php");?>
     <?php endif?>

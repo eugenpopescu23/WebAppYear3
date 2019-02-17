@@ -25,7 +25,7 @@
         }
         .img-fluid2{
               max-width: 300px;
-  height: auto; 
+  height: auto;
         }
         .img-nav{
             margin-right: 10px;
@@ -72,23 +72,20 @@
 
     <div class="container">
         <div class="starter-template">
-            <p> This website uses cookies!</p> 
+            <p> This website uses cookies!</p>
             <h1>Available Routes</h1>
             <p class="lead">You can type in either starting point, destination, time or days in the <strong>search</strong></p>
             <p class="lead">If you want more information about the journey's, then please register!</p>
         </div>
 
         <?php
-    
-        $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-        $query = "SELECT * FROM routes";
-        $result = mysqli_query($db, $query);
-    
-    
-    
-    
-        while ($row = mysqli_fetch_array($result)) {
-            ?>
+
+require_once __DIR__ . "/database.php";
+$query = "SELECT * FROM routes";
+$result = mysqli_query($db, $query);
+
+while ($row = mysqli_fetch_array($result)) {
+  ?>
         <table class="table table-responsive">
            <thead>
       <tr>
@@ -103,21 +100,21 @@
     </thead>
     <tbody>
       <tr>
-        <td><?php echo "<p>".$row['startingpoint']."</p>"; ?></td>
-        <td><?php echo "<p>".$row['destination']."</p>"; ?></td>
-        <td><?php echo "<p>".$row['days']."</p>"; ?></td>
-          <td><?php echo "<p>".$row['time']."</p>"; ?></td>
-          <td><?php echo "<img class='img-fluid2'   src='css/images/".$row['image']."' >"; ?></td>
-          <td><?php echo "<img class='img-fluid2'  src='css/images/".$row['image_other']."' >"; ?></td>
-          <td><?php echo "<img class='img-fluid2'  src='css/images/".$row['image_other2']."' >"; ?></td>
+        <td><?php echo "<p>" . $row['startingpoint'] . "</p>"; ?></td>
+        <td><?php echo "<p>" . $row['destination'] . "</p>"; ?></td>
+        <td><?php echo "<p>" . $row['days'] . "</p>"; ?></td>
+          <td><?php echo "<p>" . $row['time'] . "</p>"; ?></td>
+          <td><?php echo "<img class='img-fluid2'   src='css/images/" . $row['image'] . "' >"; ?></td>
+          <td><?php echo "<img class='img-fluid2'  src='css/images/" . $row['image_other'] . "' >"; ?></td>
+          <td><?php echo "<img class='img-fluid2'  src='css/images/" . $row['image_other2'] . "' >"; ?></td>
       </tr>
     </tbody>
 
-  
+
          </table>
             <?php
-        } 
-        ?>
+}
+?>
 
     </div>
 </body>
