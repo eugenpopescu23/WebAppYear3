@@ -1,11 +1,11 @@
-<?php include('server.php') ?>
-      <?php  
-    $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-    $username = $_SESSION['username'];
-    $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
-    $result = mysqli_query($db, $query);    
+<?php require 'server.php' ?>
+        <?php  
+        $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
+        $username = $_SESSION['username'];
+        $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
+        $result = mysqli_query($db, $query);    
     
-    if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)): ?>
+        if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)) : ?>
 <html>
     <head>
     <title>Search Results</title>
@@ -62,20 +62,20 @@
             <h1>Search Results</h1>
          </div>
 <form>
-    <?php
+            <?php
 
-    if(isset($_POST['submit_search']))  {
+            if(isset($_POST['submit_search'])) {
     
- $search = mysqli_real_escape_string($db, $_POST['search']);
+                $search = mysqli_real_escape_string($db, $_POST['search']);
      
 
-    $query = "SELECT * FROM routes WHERE destination LIKE '%$search%' OR startingpoint LIKE '%$search%' OR days LIKE '%$search%' OR time LIKE '%$search%'";
-        $result = mysqli_query($db, $query);
-        $queryResult = mysqli_num_rows($result);
+                $query = "SELECT * FROM routes WHERE destination LIKE '%$search%' OR startingpoint LIKE '%$search%' OR days LIKE '%$search%' OR time LIKE '%$search%'";
+                $result = mysqli_query($db, $query);
+                $queryResult = mysqli_num_rows($result);
         
-        if($queryResult > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                ?> 
+                if($queryResult > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        ?> 
              <table class="table table-responsive">
            <thead>
       <tr>
@@ -111,18 +111,18 @@
 
   
          </table>
-<?php
-    } 
-        }else {
-            echo "<h2>There are no results matching your search!</h2>";
-        }
-    }
-     ?>
+                        <?php
+                    } 
+                }else {
+                    echo "<h2>There are no results matching your search!</h2>";
+                }
+            }
+            ?>
         
 </form>
         </div>
     </body>
 </html>
-<?php else : ?>
-<?php header ("location: login.php"); ?>
-<?php endif?>
+    <?php else : ?>
+        <?php header("location: login.php"); ?>
+    <?php endif?>

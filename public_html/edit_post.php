@@ -1,12 +1,12 @@
-<?php include('server.php') ?>
-<?php include('errors.php'); ?>
+<?php require 'server.php' ?>
+<?php require 'errors.php'; ?>
 <?php  
     $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
     $username = $_SESSION['username'];
     $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
     $result = mysqli_query($db, $query);    
     
-    if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)): ?>
+if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)) : ?>
 
 <!DOCTYPE html>
 
@@ -70,9 +70,9 @@
     </div>
 
     <?php
-        if (isset ($_POST['ID'])) {
-            $_SESSION['PostID']=$_POST['ID'];
-        }
+    if (isset($_POST['ID'])) {
+        $_SESSION['PostID']=$_POST['ID'];
+    }
        
     $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
     $query = "SELECT * FROM routes WHERE ID=' ".$_SESSION['PostID']. "'";
@@ -85,17 +85,17 @@
         <form  action="" method="post" enctype="multipart/form-data">
             <?php
             echo "<img class='img-fluid2' src='css/images/".$row['image']."' >";
-        echo "<img class='img-fluid2'  src='css/images/".$row['image_other']."' />";
+            echo "<img class='img-fluid2'  src='css/images/".$row['image_other']."' />";
             echo "<img class='img-fluid2' src='css/images/".$row['image_other2']."' />";
-        echo "<br>";
-         echo "<br>";
-        echo "<div class='fileinput'>";
+            echo "<br>";
+            echo "<br>";
+            echo "<div class='fileinput'>";
             echo "<input type=file name=image accept=image/x-png,image/gif,image/jpeg >";
-         echo "<input type=file name=image_other accept=image/x-png,image/gif,image/jpeg >";
-         echo "<input type=file name=image_other2 accept=image/x-png,image/gif,image/jpeg >";
-    echo "<br>";
-    echo "<br>";
-        echo "<div>";
+            echo "<input type=file name=image_other accept=image/x-png,image/gif,image/jpeg >";
+            echo "<input type=file name=image_other2 accept=image/x-png,image/gif,image/jpeg >";
+            echo "<br>";
+            echo "<br>";
+            echo "<div>";
             echo "<p>User: ".$row['username']."</p>";
             echo "<p>Starting Point:<input class='form-control' type=text name=startingpoint value=" .$row['startingpoint']." >";
             echo "<p>Destination: <input type=text class='form-control'name=destination value=" .$row['destination']." >";
@@ -107,7 +107,7 @@
         
         
             echo "</div>";
-      ?>
+            ?>
                 <div>
                     <button type="submit" class="btn" name="finishedit_post">Edit Post</button>
                 </div>
@@ -127,9 +127,9 @@
     </div>
         <?php
     }
-                ?>
-            <?php
-    // if edit post pressed update the post
+    ?>
+        <?php
+        // if edit post pressed update the post
         if (isset($_POST['finishedit_post'])) {
             $image = $_FILES['image']['name'];
             $image_other = $_FILES['image_other']['name'];
@@ -137,70 +137,76 @@
              $target = "css/images/".basename($_FILES['image']['name']);
             $target2 = "css/images/".basename($_FILES['image_other']['name']);
             $target3 = "css/images/".basename($_FILES['image_other2']['name']);
-          if (isset($_POST['startingpoint'])){ $startingpoint = $_POST['startingpoint'];
-           if (isset($_POST['destination'])){ $destination = $_POST['destination'];
-            if (isset($_POST['time'])){ $time = $_POST['time'];
-            if (isset($_POST['days'])){ $days = $_POST['days'];
-            if (isset($_POST['provide'])){ $provide = $_POST['provide'];
-            if (isset($_POST['car'])){ $car = $_POST['car'];
-            if (isset($_POST['cost'])){ $cost = $_POST['cost'];
+            if (isset($_POST['startingpoint'])) { $startingpoint = $_POST['startingpoint'];
+                if (isset($_POST['destination'])) { $destination = $_POST['destination'];
+                    if (isset($_POST['time'])) { $time = $_POST['time'];
+                        if (isset($_POST['days'])) { $days = $_POST['days'];
+                            if (isset($_POST['provide'])) { $provide = $_POST['provide'];
+                                if (isset($_POST['car'])) { $car = $_POST['car'];
+                                    if (isset($_POST['cost'])) { $cost = $_POST['cost'];
                                        
      
-        //if image upload not empty
-       if(!empty($_FILES['image']['name']))  {                 
+                                        //if image upload not empty
+                                        if(!empty($_FILES['image']['name'])) {                 
            
-            $sql="UPDATE routes SET image='$image' WHERE ID=' ".$_SESSION['PostID']. "'";  
+                                              $sql="UPDATE routes SET image='$image' WHERE ID=' ".$_SESSION['PostID']. "'";  
             
-            mysqli_query($db, $sql);
+                                              mysqli_query($db, $sql);
                 
-    }
-        if(!empty($_FILES['image_other']['name']))  {   
+                                        }
+                                        if(!empty($_FILES['image_other']['name'])) {   
             
-            $sql="UPDATE routes SET image_other='$image_other' WHERE ID=' ".$_SESSION['PostID']. "'";  
+                                            $sql="UPDATE routes SET image_other='$image_other' WHERE ID=' ".$_SESSION['PostID']. "'";  
 
-          mysqli_query($db, $sql);
+                                            mysqli_query($db, $sql);
                 
-     }
-        if(!empty($_FILES['image_other2']['name']))  {                 
+                                        }
+                                        if(!empty($_FILES['image_other2']['name'])) {                 
             
-            $sql="UPDATE routes SET image_other2='$image_other2' WHERE ID=' ".$_SESSION['PostID']. "'";  
+                                            $sql="UPDATE routes SET image_other2='$image_other2' WHERE ID=' ".$_SESSION['PostID']. "'";  
 
-           mysqli_query($db, $sql);
+                                            mysqli_query($db, $sql);
                 
-      }
+                                        }
                                        
- }}}}}}}
-           $query= "UPDATE routes SET startingpoint='$startingpoint', destination='$destination', time='$time', days='$days', provide='$provide', car='$car', cost='$cost' WHERE ID=' ".$_SESSION['PostID']. "'"; 
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            $query= "UPDATE routes SET startingpoint='$startingpoint', destination='$destination', time='$time', days='$days', provide='$provide', car='$car', cost='$cost' WHERE ID=' ".$_SESSION['PostID']. "'"; 
             mysqli_query($db, $query);
             header('location: display_post.php');
             
-     }
+        }
         
         // Delete the image if the delete button is pressed
-            if (isset($_POST['delete_image'])) {
+        if (isset($_POST['delete_image'])) {
                                                          
-             $query= "UPDATE routes SET image= null WHERE ID=' ".$_SESSION['PostID']. "'";
+            $query= "UPDATE routes SET image= null WHERE ID=' ".$_SESSION['PostID']. "'";
 
-          if(  mysqli_query($db, $query)) {
-              header('location: display_post.php');
-          }
+            if(mysqli_query($db, $query)) {
+                header('location: display_post.php');
             }
-     if (isset($_POST['delete_image2'])) {
+        }
+        if (isset($_POST['delete_image2'])) {
                                                          
              $query= "UPDATE routes SET image_other= null WHERE ID=' ".$_SESSION['PostID']. "'";
 
-          if(  mysqli_query($db, $query)) {
-              header('location: display_post.php');
-          }
+            if(mysqli_query($db, $query)) {
+                header('location: display_post.php');
             }
-     if (isset($_POST['delete_image3'])) {
+        }
+        if (isset($_POST['delete_image3'])) {
                                                          
              $query= "UPDATE routes SET image_other2= null WHERE ID=' ".$_SESSION['PostID']. "'";
 
-          if(  mysqli_query($db, $query)) {
-              header('location: display_post.php');
-          }
+            if(mysqli_query($db, $query)) {
+                header('location: display_post.php');
             }
+        }
         ?>
 
 
@@ -208,5 +214,5 @@
 
 </html>
 <?php else : ?>
-<?php header ("location: login.php"); ?>
+    <?php header("location: login.php"); ?>
 <?php endif?>

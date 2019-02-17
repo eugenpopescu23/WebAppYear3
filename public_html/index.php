@@ -80,15 +80,15 @@
 
         <?php
     
-     $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-    $query = "SELECT * FROM routes";
-    $result = mysqli_query($db, $query);
+        $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
+        $query = "SELECT * FROM routes";
+        $result = mysqli_query($db, $query);
     
     
     
     
-    while ($row = mysqli_fetch_array($result)) {
-    ?>
+        while ($row = mysqli_fetch_array($result)) {
+            ?>
         <table class="table table-responsive">
            <thead>
       <tr>
@@ -115,9 +115,9 @@
 
   
          </table>
-<?php
-    } 
-     ?>
+            <?php
+        } 
+        ?>
 
     </div>
 </body>

@@ -1,12 +1,12 @@
-<?php include('server.php') ?>
+<?php require 'server.php' ?>
 
-         <?php  
-    $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-    $username = $_SESSION['username'];
-    $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
-    $result = mysqli_query($db, $query);    
+            <?php  
+            $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
+            $username = $_SESSION['username'];
+            $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
+            $result = mysqli_query($db, $query);    
     
-    if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)): ?>
+            if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)) : ?>
     
 
 <html>
@@ -80,7 +80,7 @@
      <div class="col-sm-4">
  <form method="post" action="post.php" enctype="multipart/form-data">
 
-        <?php include('errors.php'); ?>
+                <?php include 'errors.php'; ?>
         <div >
             <label>Starting Point</label>
             <input type="text" class="form-control" name="startingpoint" >
@@ -144,6 +144,6 @@
     </body>
 </html>
 
-<?php else : ?>
-<?php header ("location: login.php"); ?>
-<?php endif?>
+        <?php else : ?>
+            <?php header("location: login.php"); ?>
+        <?php endif?>

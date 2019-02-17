@@ -1,4 +1,4 @@
-<?php include('server.php') ?>
+<?php require 'server.php' ?>
 <html>
     <head>
     <title>Search Results</title>
@@ -57,18 +57,18 @@
 <form>
     <?php
 
-    if(isset($_POST['submit-search']))  {
+    if(isset($_POST['submit-search'])) {
     
- $search = mysqli_real_escape_string($db, $_POST['search']);
+        $search = mysqli_real_escape_string($db, $_POST['search']);
      
 
-    $query = "SELECT * FROM routes WHERE destination LIKE '%$search%' OR startingpoint LIKE '%$search%' OR days LIKE '%$search%' OR time LIKE '%$search%'";
+        $query = "SELECT * FROM routes WHERE destination LIKE '%$search%' OR startingpoint LIKE '%$search%' OR days LIKE '%$search%' OR time LIKE '%$search%'";
         $result = mysqli_query($db, $query);
         $queryResult = mysqli_num_rows($result);
         
         if($queryResult > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-           ?>
+                ?>
         <table class="table table-responsive">
            <thead>
       <tr>
@@ -98,13 +98,13 @@
         <p>
             Want to know more?<a href="login.php"> Login</a>
         </p>
-<?php
-    } 
+                <?php
+            } 
         }else {
             echo "<h2>There are no results matching your search!</h2>";
         }
     }
-     ?>
+    ?>
         
 </form>
         </div>
