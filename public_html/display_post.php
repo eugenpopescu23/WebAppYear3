@@ -1,13 +1,13 @@
-<?php require 'server.php' ?> 
+<?php require 'server.php'?>
 
-        <?php  
-        $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-        $username = $_SESSION['username'];
-        $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
-        $result = mysqli_query($db, $query);    
-    
-        if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)) : ?>
-        
+        <?php
+require_once __DIR__ . "/database.php";
+$username = $_SESSION['username'];
+$query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
+$result = mysqli_query($db, $query);
+
+if (isset($_SESSION['username']) && $row = mysqli_fetch_assoc($result)): ?>
+
 <!DOCTYPE html>
 
 
@@ -28,7 +28,7 @@
         }
         .img-fluid2{
               max-width: 300px;
-  height: auto; 
+  height: auto;
         }
           .img-nav{
             margin-right: 10px;
@@ -77,27 +77,25 @@
             <h1>Your Posts</h1>
          </div>
             <?php
-            $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-            $query = "SELECT * FROM routes WHERE username='" . $_SESSION['username'] . "'";
-            $result = mysqli_query($db, $query);
-            if (isset($_POST['ID'])) {
-                $_SESSION['PostID']=$_POST['ID'];
-            }
-       
-            if (isset($_POST['delete_post'])) {
-                                       
-                //if no erros then do this                  
-                $query= "DELETE FROM routes WHERE ID=' ".$_SESSION['PostID']. "'"; 
-                if(mysqli_query($db, $query)) {
-                    header('location: display_post.php');
-                }
-                
-       
-            }
-    
-            
-            while ($row = mysqli_fetch_array($result)) {
-                ?>
+require_once __DIR__ . "/database.php";
+$query = "SELECT * FROM routes WHERE username='" . $_SESSION['username'] . "'";
+$result = mysqli_query($db, $query);
+if (isset($_POST['ID'])) {
+  $_SESSION['PostID'] = $_POST['ID'];
+}
+
+if (isset($_POST['delete_post'])) {
+
+  //if no erros then do this
+  $query = "DELETE FROM routes WHERE ID=' " . $_SESSION['PostID'] . "'";
+  if (mysqli_query($db, $query)) {
+    header('location: display_post.php');
+  }
+
+}
+
+while ($row = mysqli_fetch_array($result)) {
+  ?>
           <table class="table table-responsive">
            <thead>
       <tr>
@@ -115,39 +113,39 @@
     </thead>
      <tbody>
       <tr>
-        <td><?php echo "<p>".$row['startingpoint']."</p>"; ?></td>
-        <td><?php echo "<p>".$row['destination']."</p>"; ?></td>
-        <td><?php echo "<p>".$row['days']."</p>"; ?></td>
-          <td><?php echo "<p>".$row['time']."</p>"; ?></td>
-          <td><?php echo "<p>".$row['cost']."</p>"; ?></td>
-          <td><?php echo "<p>".$row['provide']."</p>"; ?></td>
-          <td><?php echo "<p>".$row['car']."</p>"; ?></td>
-          <td><?php echo "<img class='img-fluid2'  src='css/images/".$row['image']."' >"; ?></td>
-          <td><?php echo "<img class='img-fluid2'  src='css/images/".$row['image_other']."' >"; ?></td>
-          <td><?php echo "<img class='img-fluid2'  src='css/images/".$row['image_other2']."' >"; ?></td>
-          
+        <td><?php echo "<p>" . $row['startingpoint'] . "</p>"; ?></td>
+        <td><?php echo "<p>" . $row['destination'] . "</p>"; ?></td>
+        <td><?php echo "<p>" . $row['days'] . "</p>"; ?></td>
+          <td><?php echo "<p>" . $row['time'] . "</p>"; ?></td>
+          <td><?php echo "<p>" . $row['cost'] . "</p>"; ?></td>
+          <td><?php echo "<p>" . $row['provide'] . "</p>"; ?></td>
+          <td><?php echo "<p>" . $row['car'] . "</p>"; ?></td>
+          <td><?php echo "<img class='img-fluid2'  src='css/images/" . $row['image'] . "' >"; ?></td>
+          <td><?php echo "<img class='img-fluid2'  src='css/images/" . $row['image_other'] . "' >"; ?></td>
+          <td><?php echo "<img class='img-fluid2'  src='css/images/" . $row['image_other2'] . "' >"; ?></td>
+
       </tr>
     </tbody>
 
-  
+
          </table>
-    
+
           <form action="" method="post">
         <div >
         <input type="hidden" name="ID" value="<?php echo $row['ID']; ?>" />
         <button type="submit" class="btn" name="edit_post" formaction="edit_post.php">Edit Post</button>
-            
+
           <button type="submit" class="btn" name="delete_post">Delete Post</button>
         </div>
-         </form>  
+         </form>
                 <?php
-            } 
-            ?>
-  
+}
+?>
+
          </div>
-         
+
     </body>
 </html>
-    <?php else : ?>
-        <?php header("location: login.php"); ?>
+    <?php else: ?>
+        <?php header("location: login.php");?>
     <?php endif?>

@@ -1,13 +1,13 @@
-<?php require 'server.php' ?>
+<?php require 'server.php'?>
 
-            <?php  
-            $db = mysqli_connect('mysql.cms.gre.ac.uk', 'ep6562v', '!Playboy1401', 'mdb_ep6562v');
-            $username = $_SESSION['username'];
-            $query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
-            $result = mysqli_query($db, $query);    
-    
-            if (isset($_SESSION['username']) && $row =  mysqli_fetch_assoc($result)) : ?>
-    
+            <?php
+require_once __DIR__ . "/database.php";
+$username = $_SESSION['username'];
+$query = "SELECT * FROM users WHERE username='$username' AND valid='1'";
+$result = mysqli_query($db, $query);
+
+if (isset($_SESSION['username']) && $row = mysqli_fetch_assoc($result)): ?>
+
 
 <html>
 
@@ -27,7 +27,7 @@
         }
         .img-fluid2{
               max-width: 300px;
-  height: auto; 
+  height: auto;
         }
             .img-nav{
             margin-right: 10px;
@@ -80,7 +80,7 @@
      <div class="col-sm-4">
  <form method="post" action="post.php" enctype="multipart/form-data">
 
-                <?php include 'errors.php'; ?>
+                <?php include 'errors.php';?>
         <div >
             <label>Starting Point</label>
             <input type="text" class="form-control" name="startingpoint" >
@@ -121,21 +121,21 @@
      <br>
      <div >
             <label>Insert Car Picture... (Not Needed)</label>
-         
+
             <input type="file"  name="image" multiple accept="image/x-png,image/gif,image/jpeg">
-     
+
      </div>
       <div >
             <label>Insert any other pictures below... (Not Needed)</label>
-         
+
             <input type="file"  name="image_other" multiple accept="image/x-png,image/gif,image/jpeg">
             <input type="file" name="image_other2" multiple accept="image/x-png,image/gif,image/jpeg">
-          
-     
+
+
      </div>
      <br>
             <input type="submit" class="btn" name="insert" value="insert">
-        
+
     </form>
         </div>
               <div class="col-sm-4"></div>
@@ -144,6 +144,6 @@
     </body>
 </html>
 
-        <?php else : ?>
-            <?php header("location: login.php"); ?>
+        <?php else: ?>
+            <?php header("location: login.php");?>
         <?php endif?>
