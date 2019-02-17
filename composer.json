@@ -1,0 +1,16 @@
+{
+    "name": "eugenpopescu/web-app-year3",
+    "description": "Friendly Carpool Website",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^3.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eugen Popescu",
+            "email": "eugen.popescu1997@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
