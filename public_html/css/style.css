@@ -1,0 +1,24 @@
+/*Custom CSS other than bootstrap*/
+body {
+    padding-top: 5rem;
+}
+.starter-template {
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+.img-fluid2 {
+    max-width: 300px;
+    height: auto;
+}
+.img-nav{
+    margin-right: 10px;
+}
+.error {
+    font-size: 20px;
+    margin: 0px auto;
+    padding: 10px;
+    border: 1px solid #a94442;
+    color: #a94442;
+    background: #f2dede;
+    border-radius: 5px;
+}
